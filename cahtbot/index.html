@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple ChatBot</title>
+</head>
+<body>
+    <script>
+        // Define patterns and responses
+const responses = {
+    greetings: ["Hello!", "Hi there!", "Hey!", "Hi! How can I help?"],
+    weather: ["I'm sorry, I'm just a chatbot. I don't have access to real-time data."],
+    farewell: ["Goodbye!", "Bye! Have a great day.", "See you later!"],
+};
+
+// Function to generate a random response from an array
+function getRandomResponse(array) {
+    const index = Math.floor(Math.random() * array.length);
+    return array[index];
+}
+
+// Function to handle user input
+function handleUserInput(input) {
+    input = input.toLowerCase();
+
+    if (input.includes("hi") || input.includes("hello") || input.includes("hey")) {
+        return getRandomResponse(responses.greetings);
+    } else if (input.includes("weather")) {
+        return getRandomResponse(responses.weather);
+    } else if (input.includes("bye") || input.includes("goodbye")) {
+        return getRandomResponse(responses.farewell);
+    } else {
+        return "I'm sorry, I didn't understand that. Can you ask something else?";
+    }
+}
+
+// Main function to run the chatbot
+function chatBot() {
+    console.log("Hello! I'm ChatBot. How can I assist you today?");
+
+    while (true) {
+        const userInput = prompt("You: ");
+        if (userInput === null) {
+            break;  // Exit the loop if user cancels or presses 'cancel'
+        }
+
+        const response = handleUserInput(userInput);
+        console.log("ChatBot:", response);
+
+        if (userInput.toLowerCase().includes("bye")) {
+            break;  // Exit the loop if user says bye
+        }
+    }
+
+    console.log("ChatBot: Goodbye! Feel free to chat with me again.");
+}
+
+// Call the chatBot function to start the chat
+chatBot();
+
+    </script>
+</body>
+</html>
